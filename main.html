@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="MainController.js"></script>
+</head>
+
+<body ng-controller="MainController">
+    <fieldset id="maincontent">
+        <legend>Progress Bars Demo</legend>
+        <div ng-repeat="bar in barList" class="outer-layer">
+            <div class="inner-layer" id="{{bar.barId}}" ng-style="progress={ 'width': bar.barWidth + '%' }" ng-class="{'beyond-limit' : bootstrapData.limit < bar.barWidth}">
+                <span>{{bar.barWidth+'%'}}</span>
+            </div>
+        </div>
+        <select ng-options="bar.barId as '#'+bar.barId for bar in barList" ng-model="barName">
+        </select>
+        <button ng-repeat="btn in btnList" ng-click="changeProgress(btn)">{{btn}}</button>
+    </fieldset>
+</body>
+
+</html>
